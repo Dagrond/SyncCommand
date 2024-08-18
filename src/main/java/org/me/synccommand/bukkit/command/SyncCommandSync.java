@@ -4,6 +4,7 @@ import com.tcoded.folialib.wrapper.task.WrappedTask;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 import org.me.synccommand.bukkit.ConfigHelper;
 import org.me.synccommand.bukkit.SyncCommandBukkit;
@@ -37,7 +38,7 @@ public class SyncCommandSync implements CommandExecutor {
         // Schedule Redis publish
         plugin.getFoliaLib().getImpl().runAsync((WrappedTask task) -> RedisHandler.publish(channel, syncCommand));
 
-        sender.sendMessage(config.getCommandSyncedMessage(channel));
+        if (sender instanceof Player) sender.sendMessage(config.getCommandSyncedMessage(channel));
         return true;
     }
 }
