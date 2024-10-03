@@ -16,3 +16,5 @@ commands:
 permissions:
   synccommand.admin:
     default: op
+libraries:
+  - 'redis.clients:jedis:5.1.4'
